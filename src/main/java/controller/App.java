@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -12,7 +12,7 @@ import model.Player;
 import view.JavaFXView;
 import view.View;
 
-public class App extends Application {
+public class App extends Application {*/
     /*
 
     /**
@@ -30,6 +30,7 @@ public class App extends Application {
      *                     primary stages.
      * @throws Exception if something goes wrong
      */
+/*
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
@@ -45,4 +46,4 @@ public class App extends Application {
         primaryStage.show();
 
     }
-}
+}*/
