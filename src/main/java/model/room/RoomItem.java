@@ -1,4 +1,6 @@
-package model;
+package model.room;
+
+import model.content.Item;
 
 import java.util.Random;
 

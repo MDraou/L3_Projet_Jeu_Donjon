@@ -39,7 +39,7 @@ public class App extends Application {*/
         root.getChildren().add(message);
         root.getChildren().add(new Canvas(400,200));
         Scene scene = new Scene(root);
-        Player player = new Player(view);
+        Player player = new Player(view,15,7);
         JavaFXController javaFXController = new JavaFXController(player);
         scene.setOnKeyPressed(javaFXController.eventHandler);
         primaryStage.setScene(scene);

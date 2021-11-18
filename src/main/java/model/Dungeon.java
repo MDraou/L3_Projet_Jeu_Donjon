@@ -1,5 +1,14 @@
 package model;
 
+import model.graph.Edge;
+import model.graph.Graph;
+import model.graph.Grid;
+import model.graph.RandomSearch;
+import model.room.CreatorRoomFinish;
+import model.room.CreatorRoomStart;
+import model.room.RandomRoom;
+import model.room.Room;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
@@ -21,7 +30,7 @@ public class Dungeon {
 
     private void createRoad(Graph Tree) {
         ArrayList<Edge> listOfEdges = new ArrayList<>();
-        for (LinkedList<Edge> Nodes : Tree.adjacency){
+        for (LinkedList<Edge> Nodes : Tree.getAdjacency()){
             for (Edge edge : Nodes){
                 if (!listOfEdges.contains(edge)) listOfEdges.add(edge);
             }

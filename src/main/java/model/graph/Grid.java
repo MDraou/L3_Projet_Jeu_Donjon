@@ -1,6 +1,5 @@
-package model;
+package model.graph;
 import java.util.BitSet;
-import java.util.Iterator;
 
 
 public class Grid extends Graph {

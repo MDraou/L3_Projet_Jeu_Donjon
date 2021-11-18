@@ -1,4 +1,4 @@
-package model;
+package model.room;
 
 public class RoomFinish extends Room {
 

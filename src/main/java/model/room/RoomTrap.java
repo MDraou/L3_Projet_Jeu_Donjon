@@ -1,4 +1,6 @@
-package model;
+package model.room;
+
+import model.content.Trap;
 
 import java.util.Random;
 

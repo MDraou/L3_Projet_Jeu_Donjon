@@ -1,4 +1,8 @@
-package model;
+package model.room;
+
+import model.Door;
+import model.Side;
+import model.Wall;
 
 public abstract class Room {
     private Side northSide;

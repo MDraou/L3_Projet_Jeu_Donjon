@@ -1,4 +1,4 @@
-package model;
+package model.graph;
 import java.util.*;
 
 
@@ -8,7 +8,11 @@ public class Graph{
 	int edgeCardinality;
 	
 	ArrayList<LinkedList<Edge>> adjacency;
-	
+
+	public ArrayList<LinkedList<Edge>> getAdjacency() {
+		return adjacency;
+	}
+
 	public boolean isVertex(int vertex) {
 		return adjacency.size() > vertex ? adjacency.get(vertex) != null : false ;
 	}

@@ -6,7 +6,7 @@ import view.ConsoleView;
 import java.util.Scanner;
 
 public class KeyBoardController {
-
+/*
     public void read() {
         Player player = new Player(new ConsoleView());
         Scanner scanner = new Scanner(System.in);
@@ -20,5 +20,5 @@ public class KeyBoardController {
             }
 
         }
-    }
+    }*/
 }
