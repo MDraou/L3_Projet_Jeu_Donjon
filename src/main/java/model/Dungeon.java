@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Dungeon {
     Room[][] map;
@@ -10,7 +11,8 @@ public class Dungeon {
     public Dungeon(int n){
         this.sizeOfMatrix = n;
         map = new Room[n][n];
-        createMap();
+        Random rand = new Random();
+        createMap(rand);
         Grid grid = new Grid(n, n);
         Graph graph = grid;
         Graph Tree = RandomSearch.generateTree(graph, -1);
@@ -26,12 +28,12 @@ public class Dungeon {
         }
     }
 
-    public void createMap() {
-        for (int i=0; i<=sizeOfMatrix; i++){
-            for (int j=0; j<=sizeOfMatrix; j++){
-                if (i==0 && j==0) map[i][j] = new CreatorRoomStart().createRoom();
-                if(i == sizeOfMatrix && j == sizeOfMatrix) map[i][j] = new CreatorRoomFinish().createRoom();
-                else { map[i][j] = new RandomRoom().createRandomRoom();}
+    public void createMap(Random rand) {
+        for (int raw=0; raw<=sizeOfMatrix-1; raw++){
+            for (int column=0; column<=sizeOfMatrix-1; column++){
+                if (raw==0 && column==0) map[raw][column] = new CreatorRoomStart().createRoom(rand);
+                if(raw == sizeOfMatrix-1 && column == sizeOfMatrix-1) map[raw][column] = new CreatorRoomFinish().createRoom(rand);
+                else { map[raw][column] = new RandomRoom().createRandomRoom();}
             }
         }
     }

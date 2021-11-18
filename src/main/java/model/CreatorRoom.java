@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public interface CreatorRoom {
-    Room createRoom();
+    Room createRoom(Random rand);
 }

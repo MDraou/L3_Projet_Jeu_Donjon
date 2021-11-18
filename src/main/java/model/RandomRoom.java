@@ -14,6 +14,6 @@ public class RandomRoom {
     }
 
     public Room createRandomRoom(){
-        return typesOfRoom[rand.nextInt(3)].createRoom();
+        return typesOfRoom[rand.nextInt(3)].createRoom(rand);
     }
 }

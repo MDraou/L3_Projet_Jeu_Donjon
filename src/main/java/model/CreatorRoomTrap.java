@@ -1,8 +1,10 @@
 package model;
 
+import java.util.Random;
+
 public class CreatorRoomTrap implements CreatorRoom {
     @Override
-    public Room createRoom() {
-        return new RoomTrap();
+    public Room createRoom(Random rand) {
+        return new RoomTrap(rand);
     }
 }

@@ -15,7 +15,7 @@ public class Graph{
 	
 	public <T> ArrayList<LinkedList<T>> makeList(int size) {
 		ArrayList<LinkedList<T>> res = new ArrayList<>(size);
-		for(int i = 0; i <= size; i++) {
+		for(int index = 0; index <= size; index++) {
 			res.add(null);
 		}
 		return res;
