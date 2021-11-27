@@ -16,4 +16,8 @@ public abstract class Fighter {
     public void attack(Fighter ennemy) {
         ennemy.decreaseHealth(this.strength);
     }
+
+    public boolean isDead(){
+        return health <= 0;
+    }
 }

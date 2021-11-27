@@ -3,6 +3,7 @@ package model.room;
 import model.Door;
 import model.Side;
 import model.Wall;
+import view.Drawer;
 
 public abstract class Room {
     private Side northSide;
@@ -11,6 +12,7 @@ public abstract class Room {
     private Side westSide;
     private Boolean isFirstRoom;
     private Boolean isLastRoom;
+    public String valuesOfRoom;
 
     public Room() {
         this.northSide = new Wall();
@@ -62,4 +64,10 @@ public abstract class Room {
     public boolean isLastRoom() { return isLastRoom;}
 
     public boolean isFirstRoom() { return isFirstRoom;}
+
+    public abstract boolean isVisited();
+
+    public String accept(Drawer drawer) {
+        return drawer.draw(this);
+    }
 }

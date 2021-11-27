@@ -2,7 +2,7 @@ package model.content;
 
 import model.Player;
 
-public class Trap {
+public class Trap implements Item {
     private int damage;
     private boolean isUsed;
 
@@ -11,10 +11,15 @@ public class Trap {
         this.isUsed = false;
     }
 
-    public void setTrap(Player player){
+    public void use(Player player){
         if (!this.isUsed) {
             player.decreaseHealth(this.damage);
             this.isUsed = true;
         }
+    }
+
+    @Override
+    public boolean isUsed() {
+        return isUsed;
     }
 }
