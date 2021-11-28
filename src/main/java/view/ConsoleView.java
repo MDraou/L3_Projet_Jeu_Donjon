@@ -24,6 +24,8 @@ public class ConsoleView implements View {
 
     @Override
     public void handleUp(Room room, Dungeon dungeon) {
+        System.out.println("vous êtes en x="+room.getY()+" et en y="+room.getX());
+        System.out.println(drawer.printMap(dungeon));
 
     }
 }

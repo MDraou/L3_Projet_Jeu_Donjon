@@ -19,6 +19,7 @@ public class JavaFXController {
                 case DOWN:  player.goSouth(); break;
                 case LEFT:  player.goWest(); break;
                 case RIGHT: player.goEast(); break;
+                case I: break;
             }
         }
     }; }
