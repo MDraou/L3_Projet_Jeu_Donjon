@@ -8,9 +8,10 @@ import view.View;
 import java.util.ArrayList;
 
 public class Player extends Fighter {
-    View view ;
-    Room currentRoom;
-    ArrayList<Item> inventory;
+    private View view ;
+    private Dungeon dungeon;
+    private Room currentRoom;
+    private ArrayList<Item> inventory;
 
 
     public Player(View view, int health, int strength) {
@@ -20,10 +21,64 @@ public class Player extends Fighter {
     }
 
     public void goNorth() {
-        view.handleMove(new Move("You face a wall"));
+        if (currentRoom.canGoToNorth()) {
+            this.currentRoom.playerEntersInRoom(null);
+            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX()-1, currentRoom.getY());
+            this.currentRoom.playerEntersInRoom(this);
+            view.handleUp(currentRoom,dungeon);
+        }
+        else {
+            view.handleMove(new Move("your face a wall"));
+        }
     }
 
+    public void goSouth() {
+        if (currentRoom.canGoToSouth()) {
+            this.currentRoom.playerEntersInRoom(null);
+            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX()+1, currentRoom.getY());
+            this.currentRoom.playerEntersInRoom(this);
+            view.handleUp(currentRoom,dungeon);
+        }
+        else {
+            view.handleMove(new Move("your face a wall"));
+        }
+    }
 
+    public void goEast() {
+        if (currentRoom.canGoToEast()) {
+            this.currentRoom.playerEntersInRoom(null);
+            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX(), currentRoom.getY()+1);
+            this.currentRoom.playerEntersInRoom(this);
+            view.handleUp(currentRoom,dungeon);
+        }
+        else {
+            view.handleMove(new Move("your face a wall"));
+        }
+    }
+
+    public void goWest() {
+        if (currentRoom.canGoToWest()) {
+            this.currentRoom.playerEntersInRoom(null);
+            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX(), currentRoom.getY()-1);
+            this.currentRoom.playerEntersInRoom(this);
+            view.handleUp(currentRoom,dungeon);
+        }
+        else {
+            view.handleMove(new Move("your face a wall"));
+        }
+    }
+
+    public void setDungeon(Dungeon dungeon) {
+        this.dungeon = dungeon;
+    }
+
+    public Dungeon getDungeon() {
+        return dungeon;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
 
     public void increaseHealth(int quantity) {
         this.health += quantity;
@@ -33,4 +88,11 @@ public class Player extends Fighter {
         this.strength += quantity;
     }
 
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
 }

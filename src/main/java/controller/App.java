@@ -38,9 +38,10 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
         Drawer drawer = new Drawer();
-        Dungeon dungeon = new Dungeon(10);
         JavaFXView view = new JavaFXView(drawer);
         ConsoleView viewTest = new ConsoleView(drawer);
+        Player player = new Player(view,15,7);
+        Dungeon dungeon = new Dungeon(10,player);
         Text message = view.text;
         Text map = view.map;
         view.printMap(dungeon);
@@ -48,9 +49,8 @@ public class App extends Application {
         root.getChildren().add(map);
         root.getChildren().add(new Canvas(700,400));
         Scene scene = new Scene(root);
-        Player player = new Player(view,15,7);
         viewTest.printMap(dungeon);
-        JavaFXController javaFXController = new JavaFXController(player);
+        JavaFXController javaFXController = new JavaFXController(player, dungeon);
         scene.setOnKeyPressed(javaFXController.eventHandler);
         primaryStage.setScene(scene);
         primaryStage.show();

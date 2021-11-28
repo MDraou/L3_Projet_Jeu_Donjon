@@ -7,16 +7,16 @@ import java.util.Random;
 public class RoomMonster extends Room {
     private Monster monster;
 
-    public RoomMonster(Monster monster){
-        super();
+    public RoomMonster(Monster monster, int x, int y){
+        super(x,y);
         this.monster = monster;
-        this.valuesOfRoom = "1";
+        super.setValuesOfRoom("1");
     }
 
-    @Override
+    /*@Override
     public boolean isVisited() {
         return monster.isDead();
-    }
+    }*/
 
 
 }

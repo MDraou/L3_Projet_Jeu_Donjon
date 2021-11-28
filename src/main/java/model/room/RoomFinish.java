@@ -3,11 +3,11 @@ package model.room;
 public class RoomFinish extends Room {
     private boolean inLastRoom;
 
-    public RoomFinish(){
-        super();
+    public RoomFinish(int x, int y){
+        super(x,y);
         super.setLastRoom();
         this.inLastRoom = false;
-        this.valuesOfRoom = "4";
+        super.setValuesOfRoom("4");
     }
 
     @Override

@@ -20,4 +20,12 @@ public abstract class Fighter {
     public boolean isDead(){
         return health <= 0;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
 }

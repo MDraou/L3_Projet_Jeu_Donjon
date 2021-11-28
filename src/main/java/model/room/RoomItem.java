@@ -12,16 +12,16 @@ public class RoomItem extends Room {
     private Item item;
     private Item[] itemTypes;
 
-    public RoomItem(Item item){
-        super();
+    public RoomItem(Item item, int x, int y){
+        super(x,y);
         this.item = item;
-        this.valuesOfRoom = "2";
+        super.setValuesOfRoom("2");
     }
 
-    @Override
+    /*@Override
     public boolean isVisited() {
         return item.isUsed();
-    }
+    }*/
 
 
 }

@@ -10,9 +10,12 @@ import java.util.Random;
 public class Dungeon {
     private Room[][] map;
     private int sizeOfMatrix;
+    private Player player;
 
-    public Dungeon(int n){
+    public Dungeon(int n, Player player){
         this.sizeOfMatrix = n;
+        this.player = player;
+        this.player.setDungeon(this);
         map = new Room[n][n];
         //Random rand = new Random();
         createMap();
@@ -36,11 +39,12 @@ public class Dungeon {
         for (int raw=0; raw<sizeOfMatrix; raw++){
             for (int column=0; column<sizeOfMatrix; column++){
                 if (raw==0 && column==0) {
-                    map[raw][column] = new RoomStart();
+                    map[raw][column] = new RoomStart(player,raw,column);
+                    player.setCurrentRoom(map[raw][column]);
                     continue;
                 }
-                if(raw == sizeOfMatrix-1 && column == sizeOfMatrix-1) map[raw][column] = new RoomFinish();
-                else { map[raw][column] = new RoomCreator().createRandomRoom();}
+                if(raw == sizeOfMatrix-1 && column == sizeOfMatrix-1) map[raw][column] = new RoomFinish(raw,column);
+                else { map[raw][column] = new RoomCreator(raw,column).createRandomRoom();}
             }
         }
     }
@@ -56,6 +60,8 @@ public class Dungeon {
     }
 
     public Room[][] getMap() { return map;}
+
+    public Room getRoomInXAndInY(int x,int y) { return map[x][y];}
 
     public int getSizeOfMatrix() { return sizeOfMatrix;}
 }
