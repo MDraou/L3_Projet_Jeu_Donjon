@@ -12,13 +12,16 @@ public class JavaFXView implements View{
         this.drawer = drawer;
     }
 
-    public Text text = new Text(100,100,"Nothing");
+    public Text text = new Text(300,175,"Nothing");
+    public Text map = new Text(500,20,"");
 
     public void handleMove(Move move){
-        text.setText(move.message);
+        map.setText(move.message);
     }
 
     public void printMap(Dungeon dungeon) {
-        text.setText(drawer.printMap(dungeon));
+        map.setText(drawer.printMap(dungeon));
+        map.setStyle("-fx-font-family: monospace;");
+        map.setFont(new Font(5));
     }
 }

@@ -42,10 +42,11 @@ public class App extends Application {
         JavaFXView view = new JavaFXView(drawer);
         ConsoleView viewTest = new ConsoleView(drawer);
         Text message = view.text;
-        message.setStyle("-fx-font-family: monospace;");
+        Text map = view.map;
         view.printMap(dungeon);
         root.getChildren().add(message);
-        root.getChildren().add(new Canvas(400,200));
+        root.getChildren().add(map);
+        root.getChildren().add(new Canvas(700,400));
         Scene scene = new Scene(root);
         Player player = new Player(view,15,7);
         viewTest.printMap(dungeon);
