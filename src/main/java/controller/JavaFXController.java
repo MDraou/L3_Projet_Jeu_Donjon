@@ -40,7 +40,6 @@ public class JavaFXController {
                     case ENTER:
                         model.keyPressedENTER();
                         break;
-                    default: System.out.println(event.getCode().getCode());
                 }
             }
         };
