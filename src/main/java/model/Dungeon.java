@@ -5,17 +5,15 @@ import model.room.Room;
 import model.room.RoomFinish;
 import model.room.RoomStart;
 
-import java.util.Random;
-
 public class Dungeon {
-    private Room[][] map;
-    private int sizeOfMatrix;
-    private Player player;
+    private final Room[][] map;
+    private final int sizeOfMatrix;
+    private final Player player;
 
     public Dungeon(int size, Player player){
         this.sizeOfMatrix = size;
         this.player = player;
-        this.player.setDungeon(this);
+        //this.player.setDungeon(this);
         map = new Room[size][size];
         //Random rand = new Random();
         createMap();

@@ -1,14 +1,15 @@
 package model;
 
+import view.Drawer;
+
 public class Wall implements Side{
     @Override
-    public String description() {
-        String message = "Un mur qui semble solide vous bloque la route";
-        return message;
+    public String description(Drawer drawer) {
+        return drawer.drawDescriptionWall();
     }
 
     @Override
-    public boolean canThisGo() {
+    public boolean canGoThere() {
         return false;
     }
 }

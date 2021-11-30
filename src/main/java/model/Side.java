@@ -1,7 +1,9 @@
 package model;
 
+import view.Drawer;
+
 public interface Side {
 
-    String description();
-    boolean canThisGo();
+    String description(Drawer drawer);
+    boolean canGoThere();
 }

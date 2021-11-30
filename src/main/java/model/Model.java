@@ -1,8 +1,6 @@
 package model;
 
-import model.state.MoveState;
-import model.state.StartState;
-import model.state.State;
+import model.state.*;
 
 public class Model {
 
@@ -73,10 +71,6 @@ public class Model {
         this.currentState = newState;
     }
 
-    public State getCurrentState() {
-        return currentState;
-    }
-
     public Player getPlayer() {
         return player;
     }
@@ -101,7 +95,7 @@ public class Model {
             }
         }
         else {
-            player.getView().descriptionSide(player.getCurrentRoom().getWestSide());
+            player.getView().descriptionSide(player.getCurrentRoom().getEastSide());
         }
     }
 
@@ -113,7 +107,7 @@ public class Model {
             }
         }
         else {
-            player.getView().descriptionSide(player.getCurrentRoom().getWestSide());
+            player.getView().descriptionSide(player.getCurrentRoom().getNorthSide());
         }
     }
     public void goBackRoomSouth(){
@@ -124,7 +118,40 @@ public class Model {
             }
         }
         else {
-            player.getView().descriptionSide(player.getCurrentRoom().getWestSide());
+            player.getView().descriptionSide(player.getCurrentRoom().getSouthSide());
+        }
+    }
+
+    public void battle(){
+        player.battle(player.getCurrentRoom().getMonster());
+        //System.out.println("PVMonster = " + player.getCurrentRoom().getMonster().health);
+    }
+
+    public void addItemInInventory(){
+        if (player.getInventory().size() <3){
+            player.addItemInInventory(player.getCurrentRoom().getItem());
+            player.getCurrentRoom().takeItem();
+        }
+        else {
+            player.removeLastItemInInventory();
+            player.addItemInInventory(player.getCurrentRoom().getItem());
+            player.getView().inventoryFull();
+            player.getCurrentRoom().takeItem();
+        }
+        //System.out.println(player.getInventory());
+    }
+
+    public void roomEvent(){
+        if(this.getPlayer().getCurrentRoom().isMonster() && !this.getPlayer().getCurrentRoom().isVisited()) {
+            this.changeState(new IsMonsterState());
+        }
+        if(this.getPlayer().getCurrentRoom().isLastRoom()) {
+            this.getPlayer().getView().playerWin();
+            this.changeState((new EndGameState()));
+        }
+        if(this.getPlayer().getCurrentRoom().isItem() && !this.getPlayer().getCurrentRoom().isVisited()){
+            this.addItemInInventory();
+            this.getPlayer().getView().printMap(this.getDungeon());
         }
     }
 
@@ -152,16 +179,16 @@ public class Model {
         this.currentState.keyPressedRIGHT(this);
     }
 
-    public void keyPressedDIGIT1() {
-        this.currentState.keyPressedDIGIT1(this);
+    public void keyPressedA() {
+        this.currentState.keyPressedA(this);
     }
 
-    public void keyPressedDIGIT2() {
-        this.currentState.keyPressedDIGIT2(this);
+    public void keyPressedZ() {
+        this.currentState.keyPressedZ(this);
     }
 
-    public void keyPressedDIGIT3() {
-        this.currentState.keyPressedDIGIT3(this);
+    public void keyPressedE() {
+        this.currentState.keyPressedE(this);
     }
 
     public void keyPressedENTER() {

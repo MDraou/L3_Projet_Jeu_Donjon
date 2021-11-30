@@ -30,22 +30,31 @@ public class IsMonsterState implements State{
     }
 
     @Override
-    public void keyPressedDIGIT1(Model model) {
+    public void keyPressedA(Model model) {
 
     }
 
     @Override
-    public void keyPressedDIGIT2(Model model) {
+    public void keyPressedZ(Model model) {
 
     }
 
     @Override
-    public void keyPressedDIGIT3(Model model) {
+    public void keyPressedE(Model model) {
 
     }
 
     @Override
     public void keyPressedENTER(Model model) {
-
+        model.battle();
+        if (model.getPlayer().isDead()){
+            model.getPlayer().getView().playerLoose();
+            model.changeState(new EndGameState());
+        }
+        if (model.getPlayer().getCurrentRoom().isVisited() && !model.getPlayer().isDead()){
+            model.getPlayer().getView().monsterLoose(model.getDungeon(), model.getPlayer());
+            model.changeState((new MoveState()));
+        }
+        //System.out.println("PV = "+ model.getPlayer().getHealth() +" Force = " + model.getPlayer().getStrength() );
     }
 }

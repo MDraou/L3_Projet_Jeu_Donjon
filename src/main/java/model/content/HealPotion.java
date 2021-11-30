@@ -1,26 +1,24 @@
 package model.content;
 
 import model.Player;
+import view.Drawer;
 
 public class HealPotion implements Item{
     private int powerUp;
-    private boolean isUsed;
 
     public HealPotion(int powerUp){
         this.powerUp = powerUp;
-        this.isUsed = false;
     }
 
     @Override
     public void use(Player player) {
-        if (!this.isUsed) {
-            player.increaseHealth(this.powerUp);
-            this.isUsed = true;
-        }
+        player.increaseHealth(this.powerUp);
     }
 
     @Override
-    public boolean isUsed() {
-        return isUsed;
+    public String description(Drawer drawer) {
+        return drawer.drawDescriptionHealPotion(this);
     }
+
+    public int getPowerUp() { return powerUp; }
 }

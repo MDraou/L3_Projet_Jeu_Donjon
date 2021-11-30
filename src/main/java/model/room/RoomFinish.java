@@ -1,5 +1,7 @@
 package model.room;
 
+import view.Drawer;
+
 public class RoomFinish extends Room {
     private boolean inLastRoom;
 
@@ -7,7 +9,7 @@ public class RoomFinish extends Room {
         super(x,y);
         super.setLastRoom();
         this.inLastRoom = false;
-        super.setValuesOfRoom("4");
+        super.setValuesOfRoom(4);
     }
 
     @Override
@@ -20,9 +22,10 @@ public class RoomFinish extends Room {
     }
 
     @Override
-    public String description() {
-        String message = "Bienvenue à la fin de ce donjon,\n dans cette dernière salle pour votre dernière épreuve.";
-        return message;
+    public String description(Drawer drawer) {
+        return drawer.drawDescritioonRoomFinish();
     }
 
+    @Override
+    public void takeItem() {}
 }

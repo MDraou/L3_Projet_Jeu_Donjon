@@ -28,18 +28,19 @@ public class JavaFXController {
                     case I:
                         model.keyPressedI();
                         break;
-                    case DIGIT1:
-                        model.keyPressedDIGIT1();
+                    case A:
+                        model.keyPressedA();
                         break;
-                    case DIGIT2:
-                        model.keyPressedDIGIT2();
+                    case Z:
+                        model.keyPressedZ();
                         break;
-                    case DIGIT3:
-                        model.keyPressedDIGIT3();
+                    case E:
+                        model.keyPressedE();
                         break;
                     case ENTER:
                         model.keyPressedENTER();
                         break;
+                    default: System.out.println(event.getCode().getCode());
                 }
             }
         };

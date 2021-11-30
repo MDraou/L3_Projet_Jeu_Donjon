@@ -1,25 +1,24 @@
 package model.room;
 
 import model.*;
+import model.content.Item;
 import view.Drawer;
 
 public abstract class Room {
     private Side northSide, eastSide, southSide, westSide;
-    private Boolean isFirstRoom;
     private Boolean isLastRoom;
-    private String valuesOfRoom;
+    private int valuesOfRoom;
     private Player player;
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     Monster monster;
-    boolean isVisited = false;
+    Item item;
 
     public Room(int x, int y) {
         this.northSide = new Wall();
         this.eastSide = new Wall();
         this.southSide = new Wall();
         this.westSide = new Wall();
-        this.isFirstRoom = false;
         this.isLastRoom = false;
         this.player = null;
         this.x = x;
@@ -27,19 +26,19 @@ public abstract class Room {
     }
 
     public boolean canGoToNorth(){
-        return northSide.canThisGo();
+        return northSide.canGoThere();
     }
 
     public boolean canGoToEast(){
-        return eastSide.canThisGo();
+        return eastSide.canGoThere();
     }
 
     public boolean canGoToSouth(){
-        return southSide.canThisGo();
+        return southSide.canGoThere();
     }
 
     public boolean canGoToWest(){
-        return westSide.canThisGo();
+        return westSide.canGoThere();
     }
 
     public void addDoorToNorth(){
@@ -70,49 +69,32 @@ public abstract class Room {
         isLastRoom = true;
     }
 
-    public void setFirstRoom() {isFirstRoom = true;}
-
     public boolean isLastRoom() { return isLastRoom;}
 
-    public boolean isFirstRoom() { return isFirstRoom;}
+    public abstract boolean isVisited();
 
-    //public abstract boolean isVisited();
-
-    public abstract String description();
+    public abstract String description(Drawer drawer);
 
     public abstract void setInLastRoom();
 
-    public boolean isVisited(){
-        return isVisited;
-    }
-
-    public String accept(Drawer drawer) {
-        return drawer.draw(this);
+    public String drawRoom(Drawer drawer) {
+        return drawer.drawRoom(this);
     }
 
     public void playerEntersInRoom(Player player){
         this.player = player;
-        this.isVisited = true;
     }
 
     public boolean playerInThisRoom() {
         return !(player == null);
     }
 
-    public String getValuesOfRoom() {
+    public int getValuesOfRoom() {
         return valuesOfRoom;
     }
 
-    public void setValuesOfRoom(String valuesOfRoom) {
+    public void setValuesOfRoom(int valuesOfRoom) {
         this.valuesOfRoom = valuesOfRoom;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public int getX() {
@@ -123,5 +105,13 @@ public abstract class Room {
         return y;
     }
 
-    public boolean isMonster() {return !(monster == null);}
+    public Monster getMonster() { return monster; }
+
+    public boolean isMonster() {return monster != null;}
+
+    public Item getItem() { return item; }
+
+    public boolean isItem() {return item != null;}
+
+    public abstract void takeItem();
 }

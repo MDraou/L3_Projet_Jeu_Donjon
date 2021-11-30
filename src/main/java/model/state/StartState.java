@@ -30,17 +30,17 @@ public class StartState implements State {
     }
 
     @Override
-    public void keyPressedDIGIT1(Model model) {
+    public void keyPressedA(Model model) {
 
     }
 
     @Override
-    public void keyPressedDIGIT2(Model model) {
+    public void keyPressedZ(Model model) {
 
     }
 
     @Override
-    public void keyPressedDIGIT3(Model model) {
+    public void keyPressedE(Model model) {
 
     }
 

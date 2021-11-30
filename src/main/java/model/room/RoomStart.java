@@ -1,13 +1,13 @@
 package model.room;
 
 import model.Player;
+import view.Drawer;
 
 public class RoomStart extends Room {
 
     public RoomStart(Player player, int x, int y){
         super(x,y);
-        super.setFirstRoom();
-        super.setValuesOfRoom("0");
+        super.setValuesOfRoom(0);
         super.playerEntersInRoom(player);
     }
 
@@ -16,12 +16,14 @@ public class RoomStart extends Room {
         return true;
     }
 
-    public String description() {
-        String message = "Vous êtes de retour dans la salle de départ";
-        return message;
+    public String description(Drawer drawer) {
+        return drawer.drawDescritioonRoomStart();
     }
 
     @Override
     public void setInLastRoom() {
     }
+
+    @Override
+    public void takeItem() {}
 }

@@ -3,6 +3,7 @@ package view;
 import model.Dungeon;
 import model.Player;
 import model.Side;
+import model.content.Item;
 import model.room.Room;
 
 public interface View {
@@ -14,4 +15,10 @@ public interface View {
     void printTutos ();
     void openInventory (Player player);
     void closeInventory (Room room, Dungeon dungeon, Player player);
+    void inventoryFull();
+    void monsterLoose(Dungeon dungeon, Player player);
+    void playerLoose();
+    void playerWin();
+    void descriptionItem(Item item);
+    void returnInInventory(Player player);
 }

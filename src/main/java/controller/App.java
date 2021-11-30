@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import model.Dungeon;
 import model.Model;
 import model.Player;
+import model.battle.BattleMode;
+import model.battle.ModePlayerInFirst;
 import view.Drawer;
 import view.JavaFXView;
 
@@ -37,7 +39,8 @@ public class App extends Application {
         Drawer drawer = new Drawer();
         JavaFXView view = new JavaFXView(drawer);
         //ConsoleView viewTest = new ConsoleView(drawer);
-        Player player = new Player(view,15,7);
+        BattleMode battleMode = new ModePlayerInFirst();
+        Player player = new Player(view,battleMode,15,5);
         Dungeon dungeon = new Dungeon(10,player);
         Text message = view.text;
         Text map = view.map;
@@ -47,6 +50,7 @@ public class App extends Application {
         root.getChildren().add(view.tuto);
         root.getChildren().add(view.intro);
         root.getChildren().add(view.status);
+        root.getChildren().add(view.inventory);
         root.getChildren().add(new Canvas(1000,600));
         Scene scene = new Scene(root);
         //viewTest.printMap(dungeon);

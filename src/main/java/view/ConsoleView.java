@@ -3,6 +3,7 @@ package view;
 import model.Dungeon;
 import model.Player;
 import model.Side;
+import model.content.Item;
 import model.room.Room;
 
 public class ConsoleView implements View {
@@ -50,6 +51,36 @@ public class ConsoleView implements View {
 
     @Override
     public void closeInventory(Room room, Dungeon dungeon, Player player) {
+
+    }
+
+    @Override
+    public void inventoryFull() {
+
+    }
+
+    @Override
+    public void monsterLoose(Dungeon dungeon, Player player) {
+
+    }
+
+    @Override
+    public void playerLoose() {
+
+    }
+
+    @Override
+    public void playerWin() {
+
+    }
+
+    @Override
+    public void descriptionItem(Item item) {
+
+    }
+
+    @Override
+    public void returnInInventory(Player player) {
 
     }
 }

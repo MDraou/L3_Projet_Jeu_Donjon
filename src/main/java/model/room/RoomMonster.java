@@ -1,15 +1,14 @@
 package model.room;
 
 import model.Monster;
-
-import java.util.Random;
+import view.Drawer;
 
 public class RoomMonster extends Room {
 
     public RoomMonster(Monster monster, int x, int y){
         super(x,y);
         super.monster = monster;
-        super.setValuesOfRoom("1");
+        super.setValuesOfRoom(1);
     }
 
     @Override
@@ -17,12 +16,14 @@ public class RoomMonster extends Room {
         return monster.isDead();
     }
 
-    public String description() {
-        String message = "Un monstre se dresse sur votre chemin, vous devez le combattre";
-        return message;
+    public String description(Drawer drawer) {
+        return drawer.drawDescritioonRoomMonster(this);
     }
 
     @Override
     public void setInLastRoom() {
     }
+
+    @Override
+    public void takeItem() {}
 }

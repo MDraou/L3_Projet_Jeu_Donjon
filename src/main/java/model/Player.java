@@ -1,86 +1,27 @@
 package model;
 
+import model.battle.BattleMode;
 import model.content.Item;
 import model.room.Room;
 import view.View;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Player extends Fighter {
     private View view ;
-    private Dungeon dungeon;
     private Room currentRoom;
-    private ArrayList<Item> inventory;
+    private LinkedList<Item> inventory;
+    private BattleMode battleMode;
 
 
-    public Player(View view, int health, int strength) {
+    public Player(View view,BattleMode battleMode, int health, int strength) {
         super(health, strength);
         this.view = view;
-        inventory = new ArrayList<>();
+        inventory = new LinkedList<>();
+        this.battleMode = battleMode;
     }
 
-    public void goNorth() {
-        if (currentRoom.canGoToNorth()) {
-            this.currentRoom.playerEntersInRoom(null);
-            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX()-1, currentRoom.getY());
-            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
-            this.currentRoom.playerEntersInRoom(this);
-            view.handleMove(currentRoom,dungeon,this);
-        }
-        else {
-            view.descriptionSide(currentRoom.getNorthSide());
-        }
-    }
-
-    public void goSouth() {
-        if (currentRoom.canGoToSouth()) {
-            this.currentRoom.playerEntersInRoom(null);
-            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX()+1, currentRoom.getY());
-            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
-            this.currentRoom.playerEntersInRoom(this);
-            view.handleMove(currentRoom,dungeon,this);
-        }
-        else {
-            view.descriptionSide(currentRoom.getSouthSide());
-        }
-    }
-
-    public void goEast() {
-        if (currentRoom.canGoToEast()) {
-            this.currentRoom.playerEntersInRoom(null);
-            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX(), currentRoom.getY()+1);
-            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
-            this.currentRoom.playerEntersInRoom(this);
-            view.handleMove(currentRoom,dungeon,this);
-        }
-        else {
-            view.descriptionSide(currentRoom.getEastSide());
-        }
-    }
-
-    public void goWest() {
-        if (currentRoom.canGoToWest()) {
-            view.descriptionSide(currentRoom.getWestSide());
-            this.currentRoom.playerEntersInRoom(null);
-            this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX(), currentRoom.getY()-1);
-            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
-            this.currentRoom.playerEntersInRoom(this);
-            view.handleMove(currentRoom,dungeon,this);
-        }
-        else {
-            view.descriptionSide(currentRoom.getWestSide());
-        }
-    }
-
-    public void setDungeon(Dungeon dungeon) {
-        this.dungeon = dungeon;
-    }
-
-    public Dungeon getDungeon() {
-        return dungeon;
-    }
-
-    public ArrayList<Item> getInventory() {
+    public LinkedList<Item> getInventory() {
         return inventory;
     }
 
@@ -103,4 +44,16 @@ public class Player extends Fighter {
     public View getView() {
         return view;
     }
+
+    public void battle(Fighter enemy){ battleMode.battle(this,enemy); }
+
+    public void addItemInInventory (Item item){
+        inventory.add(item);
+    }
+
+    public void removeLastItemInInventory (){
+        inventory.removeFirst();
+    }
+
+    public void removeFromInventory (int index) {inventory.remove(index);}
 }
