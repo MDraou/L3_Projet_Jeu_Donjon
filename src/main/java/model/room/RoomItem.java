@@ -23,5 +23,12 @@ public class RoomItem extends Room {
         return item.isUsed();
     }*/
 
+    public String description() {
+        String message = "Un coffre se tient au beau millieu de la salle,\n vous prenez son contenue et continuer votre route.";
+        return message;
+    }
 
+    @Override
+    public void setInLastRoom() {
+    }
 }

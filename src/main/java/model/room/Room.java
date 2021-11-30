@@ -1,22 +1,17 @@
 package model.room;
 
-import model.Door;
-import model.Player;
-import model.Side;
-import model.Wall;
+import model.*;
 import view.Drawer;
 
 public abstract class Room {
-    private Side northSide;
-    private Side eastSide;
-    private Side southSide;
-    private Side westSide;
+    private Side northSide, eastSide, southSide, westSide;
     private Boolean isFirstRoom;
     private Boolean isLastRoom;
     private String valuesOfRoom;
     private Player player;
     private int x;
     private int y;
+    Monster monster;
     boolean isVisited = false;
 
     public Room(int x, int y) {
@@ -63,6 +58,14 @@ public abstract class Room {
         this.westSide = new Door();
     }
 
+    public Side getEastSide() { return eastSide; }
+
+    public Side getNorthSide() { return northSide; }
+
+    public Side getSouthSide() { return southSide; }
+
+    public Side getWestSide() { return westSide; }
+
     public void setLastRoom(){
         isLastRoom = true;
     }
@@ -74,6 +77,10 @@ public abstract class Room {
     public boolean isFirstRoom() { return isFirstRoom;}
 
     //public abstract boolean isVisited();
+
+    public abstract String description();
+
+    public abstract void setInLastRoom();
 
     public boolean isVisited(){
         return isVisited;
@@ -115,4 +122,6 @@ public abstract class Room {
     public int getY() {
         return y;
     }
+
+    public boolean isMonster() {return !(monster == null);}
 }

@@ -19,5 +19,10 @@ public class RoomFinish extends Room {
         this.inLastRoom = true;
     }
 
+    @Override
+    public String description() {
+        String message = "Bienvenue à la fin de ce donjon,\n dans cette dernière salle pour votre dernière épreuve.";
+        return message;
+    }
 
 }

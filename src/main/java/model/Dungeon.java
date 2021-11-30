@@ -12,11 +12,11 @@ public class Dungeon {
     private int sizeOfMatrix;
     private Player player;
 
-    public Dungeon(int n, Player player){
-        this.sizeOfMatrix = n;
+    public Dungeon(int size, Player player){
+        this.sizeOfMatrix = size;
         this.player = player;
         this.player.setDungeon(this);
-        map = new Room[n][n];
+        map = new Room[size][size];
         //Random rand = new Random();
         createMap();
         createRoad();

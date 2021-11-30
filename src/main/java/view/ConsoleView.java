@@ -1,7 +1,8 @@
 package view;
 
 import model.Dungeon;
-import model.Move;
+import model.Player;
+import model.Side;
 import model.room.Room;
 
 public class ConsoleView implements View {
@@ -13,19 +14,42 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void handleMove(Move move){
-        System.out.println(move.message);
-    }
-
-    @Override
     public void printMap(Dungeon dungeon) {
         System.out.println(drawer.printMap(dungeon));
     }
 
     @Override
-    public void handleUp(Room room, Dungeon dungeon) {
+    public void handleMove(Room room, Dungeon dungeon, Player player) {
         System.out.println("vous êtes en x="+room.getY()+" et en y="+room.getX());
         System.out.println(drawer.printMap(dungeon));
+    }
+
+    @Override
+    public void printStatus(Player player) {
+    }
+
+    @Override
+    public void printStart() {
+
+    }
+
+    @Override
+    public void descriptionSide(Side side) {
+
+    }
+
+    @Override
+    public void printTutos() {
+
+    }
+
+    @Override
+    public void openInventory(Player player) {
+
+    }
+
+    @Override
+    public void closeInventory(Room room, Dungeon dungeon, Player player) {
 
     }
 }

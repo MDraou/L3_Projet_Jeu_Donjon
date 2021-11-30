@@ -16,4 +16,12 @@ public class RoomStart extends Room {
         return true;
     }
 
+    public String description() {
+        String message = "Vous êtes de retour dans la salle de départ";
+        return message;
+    }
+
+    @Override
+    public void setInLastRoom() {
+    }
 }

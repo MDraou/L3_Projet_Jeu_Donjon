@@ -2,33 +2,78 @@ package view;
 
 import javafx.scene.text.*;
 import model.Dungeon;
-import model.Move;
+import model.Player;
+import model.Side;
 import model.room.Room;
 
-public class JavaFXView implements View{
+public class JavaFXView implements view.View {
 
-    Drawer drawer;
+    view.Drawer drawer;
 
-    public JavaFXView(Drawer drawer) {
+    public JavaFXView(view.Drawer drawer) {
         this.drawer = drawer;
         map.setStyle("-fx-font-family: monospace;");
-        map.setFont(new Font(5));
+        map.setFont(new Font(10));
+        printStart();
     }
 
-    public Text text = new Text(300,175,"Nothing");
-    public Text map = new Text(500,20,"");
+    public Text text = new Text(400,285,"");
+    public Text intro = new Text(300,285,"");
+    public Text tuto = new Text(30,285,"");
+    public Text map = new Text(650,20,"");
+    public Text status = new Text(20,20,"");
 
-    public void handleMove(Move move){
-        text.setText(move.message);
-    }
 
     public void printMap(Dungeon dungeon) {
         map.setText(drawer.printMap(dungeon));
     }
 
     @Override
-    public void handleUp(Room room,Dungeon dungeon) {
-        text.setText("vous êtes en x="+room.getY()+" et en y="+room.getX());
+    public void handleMove(Room room, Dungeon dungeon, Player player) {
+        intro.setText("");
+        tuto.setText("");
+        text.setText(room.description());
+        text.setTextAlignment(TextAlignment.CENTER);
         printMap(dungeon);
+        printStatus(player);
+    }
+
+    @Override
+    public void descriptionSide(Side side) {
+        text.setText(side.description());
+    }
+
+    @Override
+    public void printStatus(Player player) {
+        status.setText(drawer.printStatus(player));
+    }
+
+    @Override
+    public void printStart() {
+        intro.setText(drawer.printIntro());
+        intro.setTextAlignment(TextAlignment.CENTER);
+    }
+
+    @Override
+    public void printTutos() {
+        intro.setText("");
+        tuto.setText(drawer.printTutos());
+        tuto.setTextAlignment(TextAlignment.CENTER);
+    }
+
+    @Override
+    public void openInventory(Player player) {
+        map.setText("");
+        status.setText("");
+        tuto.setText("");
+        text.setText("Vous ouvrez l'inventaire");
+
+    }
+
+    @Override
+    public void closeInventory(Room room, Dungeon dungeon, Player player) {
+        printStatus(player);
+        printMap(dungeon);
+        handleMove(room,dungeon,player);
     }
 }

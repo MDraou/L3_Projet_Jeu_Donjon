@@ -1,6 +1,7 @@
 package view;
 
 import model.Dungeon;
+import model.Player;
 import model.room.Room;
 
 public class Drawer {
@@ -28,6 +29,22 @@ public class Drawer {
         }
         return viewMap;
 
+    }
+
+    public String printStatus(Player player){
+        return "hp = "+player.getHealth()+"\nforce = "+player.getStrength();
+    }
+
+    public String printTutos (){
+        return "-Pour vous déplacer, utilsez les flèches directionnelles\n" +
+                "-Pour ouvrir l'inventaire,appuyer sur I\n"+
+                "-Pour utilser vos objets utilser 1, 2 ou 3 une fois dans l'inventaire\n" +
+                "-Les combats et la récupération des objets sont automatique";
+    }
+    public String printIntro (){
+        return "Bienvenue dans le donjon, votre but et " +
+                "d'arriver à la fin, bonne chance \n" +
+                "appuyer sur entrée pour commencer ";
     }
 
 }

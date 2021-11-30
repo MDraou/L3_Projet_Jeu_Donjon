@@ -2,7 +2,6 @@ package model;
 
 import model.content.Item;
 import model.room.Room;
-import view.ConsoleView;
 import view.View;
 
 import java.util.ArrayList;
@@ -24,11 +23,12 @@ public class Player extends Fighter {
         if (currentRoom.canGoToNorth()) {
             this.currentRoom.playerEntersInRoom(null);
             this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX()-1, currentRoom.getY());
+            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
             this.currentRoom.playerEntersInRoom(this);
-            view.handleUp(currentRoom,dungeon);
+            view.handleMove(currentRoom,dungeon,this);
         }
         else {
-            view.handleMove(new Move("your face a wall"));
+            view.descriptionSide(currentRoom.getNorthSide());
         }
     }
 
@@ -36,11 +36,12 @@ public class Player extends Fighter {
         if (currentRoom.canGoToSouth()) {
             this.currentRoom.playerEntersInRoom(null);
             this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX()+1, currentRoom.getY());
+            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
             this.currentRoom.playerEntersInRoom(this);
-            view.handleUp(currentRoom,dungeon);
+            view.handleMove(currentRoom,dungeon,this);
         }
         else {
-            view.handleMove(new Move("your face a wall"));
+            view.descriptionSide(currentRoom.getSouthSide());
         }
     }
 
@@ -48,23 +49,26 @@ public class Player extends Fighter {
         if (currentRoom.canGoToEast()) {
             this.currentRoom.playerEntersInRoom(null);
             this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX(), currentRoom.getY()+1);
+            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
             this.currentRoom.playerEntersInRoom(this);
-            view.handleUp(currentRoom,dungeon);
+            view.handleMove(currentRoom,dungeon,this);
         }
         else {
-            view.handleMove(new Move("your face a wall"));
+            view.descriptionSide(currentRoom.getEastSide());
         }
     }
 
     public void goWest() {
         if (currentRoom.canGoToWest()) {
+            view.descriptionSide(currentRoom.getWestSide());
             this.currentRoom.playerEntersInRoom(null);
             this.currentRoom = dungeon.getRoomInXAndInY(currentRoom.getX(), currentRoom.getY()-1);
+            if (currentRoom.isLastRoom()) currentRoom.setInLastRoom();
             this.currentRoom.playerEntersInRoom(this);
-            view.handleUp(currentRoom,dungeon);
+            view.handleMove(currentRoom,dungeon,this);
         }
         else {
-            view.handleMove(new Move("your face a wall"));
+            view.descriptionSide(currentRoom.getWestSide());
         }
     }
 
@@ -94,5 +98,9 @@ public class Player extends Fighter {
 
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public View getView() {
+        return view;
     }
 }

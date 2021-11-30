@@ -1,19 +1,16 @@
 package controller;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Dungeon;
+import model.Model;
 import model.Player;
-import view.ConsoleView;
 import view.Drawer;
 import view.JavaFXView;
-import view.View;
 
 public class App extends Application {
 
@@ -39,18 +36,22 @@ public class App extends Application {
         Group root = new Group();
         Drawer drawer = new Drawer();
         JavaFXView view = new JavaFXView(drawer);
-        ConsoleView viewTest = new ConsoleView(drawer);
+        //ConsoleView viewTest = new ConsoleView(drawer);
         Player player = new Player(view,15,7);
         Dungeon dungeon = new Dungeon(10,player);
         Text message = view.text;
         Text map = view.map;
-        view.printMap(dungeon);
+        //view.printMap(dungeon);
         root.getChildren().add(message);
         root.getChildren().add(map);
-        root.getChildren().add(new Canvas(700,400));
+        root.getChildren().add(view.tuto);
+        root.getChildren().add(view.intro);
+        root.getChildren().add(view.status);
+        root.getChildren().add(new Canvas(1000,600));
         Scene scene = new Scene(root);
-        viewTest.printMap(dungeon);
-        JavaFXController javaFXController = new JavaFXController(player, dungeon);
+        //viewTest.printMap(dungeon);
+        Model model = new Model(player, dungeon);
+        JavaFXController javaFXController = new JavaFXController(model);
         scene.setOnKeyPressed(javaFXController.eventHandler);
         primaryStage.setScene(scene);
         primaryStage.show();

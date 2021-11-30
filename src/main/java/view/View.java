@@ -1,11 +1,17 @@
 package view;
 
 import model.Dungeon;
-import model.Move;
+import model.Player;
+import model.Side;
 import model.room.Room;
 
 public interface View {
-    void handleMove(Move move);
     void printMap(Dungeon dungeon);
-    void handleUp(Room room, Dungeon dungeon);
+    void handleMove(Room room, Dungeon dungeon, Player player);
+    void descriptionSide (Side side);
+    void printStatus (Player player);
+    void printStart ();
+    void printTutos ();
+    void openInventory (Player player);
+    void closeInventory (Room room, Dungeon dungeon, Player player);
 }
