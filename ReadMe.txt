@@ -10,4 +10,9 @@ Pour jouer à ce jeu, les touches utiles sont:
     - la touche 'Z' pour choisir le second mode combat, puis pour choisir d'utiliser le second emplacement dans l'inventaire.
     - la touche 'E' pour choisir le troisième et dernier emplacement dans l'inventaire.
 Dans notre jeu, nous avons décidé de borner l'inventaire à 3 emplacements et de masquer son contenue car le joueur peut utiliser une potion de poison sans le savoir.
+Sur la miniMap, les nombres représente des types de salles:
+    - 0 représente la salle de début.
+    - 1 représente les salles avec un monstre à l'intérieur.
+    - 2 représente les salles avec un item à l'intérieur.
+    - 4 représente la dernière salle (même s'il n'est jamais affichés dans notre affichage graphique).
 Pour finir le jeu, il faut donc soit arriver à la dernière salle, soit mourir contre un monstre ou en buvant une potion de poison.
