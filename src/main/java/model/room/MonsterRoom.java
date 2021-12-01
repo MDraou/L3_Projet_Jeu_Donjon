@@ -3,9 +3,9 @@ package model.room;
 import model.Monster;
 import view.Drawer;
 
-public class RoomMonster extends Room {
+public class MonsterRoom extends Room {
 
-    public RoomMonster(Monster monster, int x, int y){
+    public MonsterRoom(Monster monster, int x, int y){
         super(x,y);
         super.monster = monster;
         super.setValuesOfRoom(1);

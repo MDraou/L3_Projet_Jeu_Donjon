@@ -3,9 +3,9 @@ package model.room;
 import model.content.Item;
 import view.Drawer;
 
-public class RoomItem extends Room {
+public class ItemRoom extends Room {
 
-    public RoomItem(Item item, int x, int y){
+    public ItemRoom(Item item, int x, int y){
         super(x,y);
         super.item = item;
         super.setValuesOfRoom(2);

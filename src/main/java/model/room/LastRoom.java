@@ -2,10 +2,10 @@ package model.room;
 
 import view.Drawer;
 
-public class RoomFinish extends Room {
+public class LastRoom extends Room {
     private boolean inLastRoom;
 
-    public RoomFinish(int x, int y){
+    public LastRoom(int x, int y){
         super(x,y);
         super.setLastRoom();
         this.inLastRoom = false;

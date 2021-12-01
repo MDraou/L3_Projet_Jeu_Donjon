@@ -21,4 +21,5 @@ public interface View {
     void playerWin();
     void descriptionItem(Item item);
     void returnInInventory(Player player);
+    void chooseBattleMode();
 }

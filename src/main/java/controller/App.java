@@ -11,6 +11,8 @@ import model.Model;
 import model.Player;
 import model.battle.BattleMode;
 import model.battle.ModePlayerInFirst;
+import model.room.CreatorRoomRandom;
+import model.room.CreatorsRoom;
 import view.Drawer;
 import view.JavaFXView;
 
@@ -38,10 +40,10 @@ public class App extends Application {
         Group root = new Group();
         Drawer drawer = new Drawer();
         JavaFXView view = new JavaFXView(drawer);
-        //ConsoleView viewTest = new ConsoleView(drawer);
         BattleMode battleMode = new ModePlayerInFirst();
-        Player player = new Player(view,battleMode,15,5);
-        Dungeon dungeon = new Dungeon(10,player);
+        Player player = new Player(view,null,15,5);
+        CreatorsRoom creatorRoom = new CreatorRoomRandom(0,0);
+        Dungeon dungeon = new Dungeon(10,player,creatorRoom);
         Text message = view.text;
         Text map = view.map;
         //view.printMap(dungeon);

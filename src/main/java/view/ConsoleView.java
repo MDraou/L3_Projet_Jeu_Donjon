@@ -83,4 +83,9 @@ public class ConsoleView implements View {
     public void returnInInventory(Player player) {
 
     }
+
+    @Override
+    public void chooseBattleMode() {
+
+    }
 }

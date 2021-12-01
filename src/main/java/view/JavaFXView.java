@@ -88,12 +88,14 @@ public class JavaFXView implements view.View {
 
     @Override
     public void inventoryFull() {
-        text.setText("Votre inventaire est complet,\nvotre dernier objet est jetée puis remplacer par un nouveau");
+        text.setText(drawer.printInventoryFull());
     }
+
+
 
     @Override
     public void monsterLoose(Dungeon dungeon, Player player) {
-        text.setText("Le monstre est mort, vous pouvez continuer");
+        text.setText(drawer.printMonsterLoose());
         printMap(dungeon);
         printStatus(player);
     }
@@ -102,20 +104,38 @@ public class JavaFXView implements view.View {
     public void playerLoose() {
         map.setText("");
         status.setText("");
-        text.setText("Vous avez Perdu\nVeuillez fermer le jeu et le relancer pour rejouer");
+        inventory.setText("");
+        tuto.setText("");
+        intro.setText("");
+        text.setText(drawer.printPlayerLoose());
         text.setTextAlignment(TextAlignment.CENTER);
+        text.setFont(new Font(22));
+        text.setX(200);
     }
 
     @Override
     public void playerWin() {
         map.setText("");
         status.setText("");
-        text.setText("BRAVO !!!!!\nVous avez Gagner\nSi vous voulez rejouer, fermer le jeu et relancer le");
+        inventory.setText("");
+        tuto.setText("");
+        intro.setText("");
+        text.setText(drawer.printPlayerWin());
         text.setTextAlignment(TextAlignment.CENTER);
+        text.setFont(new Font(22));
+        text.setX(200);
     }
 
     @Override
     public void descriptionItem(Item item) {
         text.setText(item.description(drawer));
+    }
+
+    @Override
+    public void chooseBattleMode() {
+        intro.setText(drawer.printChooseBattleMode());
+        intro.setTextAlignment(TextAlignment.CENTER);
+        intro.setFont(new Font(16));
+        intro.setX(200);
     }
 }

@@ -1,15 +1,13 @@
 package view;
 
-import model.Door;
 import model.Dungeon;
 import model.Player;
-import model.Wall;
 import model.content.HealPotion;
 import model.content.PoisonPotion;
 import model.content.StrengthPotion;
 import model.room.Room;
-import model.room.RoomItem;
-import model.room.RoomMonster;
+import model.room.ItemRoom;
+import model.room.MonsterRoom;
 
 public class Drawer {
     public String drawRoom(Room room) {
@@ -26,12 +24,12 @@ public class Drawer {
 
     public String drawDescriptionDoor() {return "Un porte se trouve devant vous. Vous traversez cette porte.";}
 
-    public String drawDescritioonRoomMonster(RoomMonster room) {
+    public String drawDescritioonRoomMonster(MonsterRoom room) {
         if (room.getMonster().isDead()) return "Un cadavre de monstre gît à vos pieds.\nIl semble qu'il soit tomber sur vous";
         return "Un monstre se dresse sur votre chemin, vous devez le combattre";
     }
 
-    public String drawDescritioonRoomItem(RoomItem room) {
+    public String drawDescritioonRoomItem(ItemRoom room) {
         if (room.getItem() == null) return "Un coffre vide se tient au beau milleu de la salle.\nVous avez déjà pris son contenu.";
         return "Un coffre se tient au beau millieu de la salle.\nVous prenez son contenue et continuer votre route.";
     }
@@ -88,6 +86,27 @@ public class Drawer {
             else viewInventory +=(index+1)+". -------\n";
         }
         return viewInventory;
+    }
+
+    public String printInventoryFull() {
+        return "Votre inventaire est complet,\nvotre dernier objet est jetée puis remplacer par un nouveau";
+    }
+
+    public String printMonsterLoose() {
+        return "Le monstre est mort, vous pouvez continuer";
+    }
+
+    public String printPlayerLoose() {
+        return "Vous avez Perdu\nVeuillez fermer le jeu et le relancer pour rejouer";
+    }
+
+    public String printPlayerWin() {
+        return "BRAVO !!!!!\nVous avez Gagner\nSi vous voulez rejouer, fermer le jeu et relancer le";
+    }
+
+    public String printChooseBattleMode(){
+        return "1. Le joueur attaque en premier                2. Le monstre attaque en premier\n" +
+                "'appuyer sur A'                                         'appuyer sur Z'";
     }
 
 }

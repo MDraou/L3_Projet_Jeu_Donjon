@@ -46,9 +46,7 @@ public class StartState implements State {
 
     @Override
     public void keyPressedENTER(Model model) {
-        model.getPlayer().getView().printStatus(model.getPlayer());
-        model.getPlayer().getView().printMap(model.getDungeon());
-        model.getPlayer().getView().printTutos();
-        model.changeState(new MoveState());
+        model.getPlayer().getView().chooseBattleMode();
+        model.changeState(new ChooseBattleModeState());
     }
 }

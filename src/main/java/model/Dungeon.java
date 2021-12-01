@@ -1,21 +1,18 @@
 package model;
 
-import model.room.RoomCreator;
-import model.room.Room;
-import model.room.RoomFinish;
-import model.room.RoomStart;
+import model.room.*;
 
 public class Dungeon {
     private final Room[][] map;
     private final int sizeOfMatrix;
     private final Player player;
+    private CreatorsRoom creatorRoom;
 
-    public Dungeon(int size, Player player){
+    public Dungeon(int size, Player player, CreatorsRoom creatorRoom){
         this.sizeOfMatrix = size;
         this.player = player;
-        //this.player.setDungeon(this);
-        map = new Room[size][size];
-        //Random rand = new Random();
+        this.creatorRoom = creatorRoom;
+        this.map = new Room[size][size];
         createMap();
         createRoad();
     }
@@ -37,12 +34,15 @@ public class Dungeon {
         for (int raw=0; raw<sizeOfMatrix; raw++){
             for (int column=0; column<sizeOfMatrix; column++){
                 if (raw==0 && column==0) {
-                    map[raw][column] = new RoomStart(player,raw,column);
+                    map[raw][column] = new StartRoom(player,raw,column);
                     player.setCurrentRoom(map[raw][column]);
                     continue;
                 }
-                if(raw == sizeOfMatrix-1 && column == sizeOfMatrix-1) map[raw][column] = new RoomFinish(raw,column);
-                else { map[raw][column] = new RoomCreator(raw,column).createRandomRoom();}
+                if(raw == sizeOfMatrix-1 && column == sizeOfMatrix-1) map[raw][column] = new LastRoom(raw,column);
+                else {
+                    creatorRoom.setX(raw);
+                    creatorRoom.setY(column);
+                    map[raw][column] = creatorRoom.createRandomRoom();}
             }
         }
     }

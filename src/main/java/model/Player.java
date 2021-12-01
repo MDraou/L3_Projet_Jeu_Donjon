@@ -56,4 +56,6 @@ public class Player extends Fighter {
     }
 
     public void removeFromInventory (int index) {inventory.remove(index);}
+
+    public void changeBattleMode (BattleMode newBattleMode) { this.battleMode = newBattleMode;}
 }
